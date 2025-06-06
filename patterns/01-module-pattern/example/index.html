@@ -5,11 +5,266 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Pattern</title>
-    <script src="" defer></script>
+
+    <style>
+        /* Modern CSS Reset */
+        :root {
+            --primary: #4361ee;
+            /* Vibrant blue */
+            --primary-dark: #3a0ca3;
+            /* Deep purple-blue */
+            --secondary: #f72585;
+            /* Energetic pink */
+            --accent: #4cc9f0;
+            /* Fresh teal */
+            --light: #f8f9fa;
+            /* Off-white */
+            --dark: #212529;
+            /* Dark gray */
+            --success: #38b000;
+            /* Green for positive actions */
+            --danger: #ef233c;
+            /* Red for destructive actions */
+            --warning: #ff9e00;
+            /* Orange for warnings */
+            --border-radius: 12px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        #module-example-IIFE {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        #module-example-IIFE:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        #module-example-IIFE h1 {
+            font-size: 3rem;
+            margin: 1rem 0;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Counter value animation */
+        #module-example-IIFE h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        #module-example-IIFE h1.changed::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%, -50%);
+            transform-origin: 50% 50%;
+        }
+
+        button:focus::after,
+        button:active::after {
+            animation: ripple 0.6s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        #increment {
+            background-color: var(--success);
+            color: white;
+        }
+
+        #increment:hover {
+            background-color: #2b8c00;
+            transform: translateY(-2px);
+        }
+
+        #decrement {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        #decrement:hover {
+            background-color: #d00000;
+            transform: translateY(-2px);
+        }
+
+        #reset {
+            background-color: var(--warning);
+            color: var(--dark);
+        }
+
+        #reset:hover {
+            background-color: #ff8500;
+            transform: translateY(-2px);
+        }
+
+        /* Pulse animation for value changes */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 0.3s ease;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            #module-example-IIFE {
+                padding: 1.5rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <h1>Module Pattern Example (IIFE,ES6 Modules,Revealing Module)</h1>
+    <div id="module-example-IIFE">
+        <h1>Counter:{{Count}}</h1>
+        <div class="button-group">
+            <button id="increment">+</button>
+            <button id="decrement">-</button>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
 
+    <!-- =============== IIFE Example =============== -->
+    <script src="./IIFE.js"></script>
+    <script>
+        const div = document.getElementById('module-example-IIFE');
+        const h1 = div.querySelector('h1');
+        const incrementButton = div.querySelector('#increment');
+        const decrementButton = div.querySelector('#decrement');
+        const resetButton = div.querySelector('#reset');
+
+        h1.textContent = `Counter: ${Counter.getCount()}`;
+
+        incrementButton.addEventListener('click', () => {
+            Counter.increment();
+            h1.textContent = `Counter: ${Counter.getCount()}`;
+        });
+
+        decrementButton.addEventListener('click', () => {
+            Counter.decrement();
+            h1.textContent = `Counter: ${Counter.getCount()}`;
+        });
+
+        resetButton.addEventListener('click', () => {
+            Counter.reset();
+            h1.textContent = `Counter: ${Counter.getCount()}`;
+        });
+
+    </script>
+    <!-- =============== ES6 Module Example =============== -->
+    <script type="module" src="./module/main.js"></script>
+    <!-- ============== Revealing Module Example =============== -->
+    <script src="./revealingModule.js"></script>
+    <script>
+        UserModule.login('Omar');
+        UserModule.logout();
+    </script>
 </body>
 
 </html>
