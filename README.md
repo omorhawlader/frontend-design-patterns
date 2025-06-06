@@ -6,7 +6,7 @@
 
 ## 🧩 Fundamental Patterns  
 
-### 1. **Module Pattern**  
+### [1. **Module Pattern**](patterns/01-module-pattern/README.md)  
 - Keeps code organized in separate blocks  
 - Prevents naming conflicts  
 - Types: IIFE, ES Modules, Revealing Module  
