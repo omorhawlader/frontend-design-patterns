@@ -11,7 +11,7 @@
 - Prevents naming conflicts  
 - Types: IIFE, ES Modules, Revealing Module  
 
-### 2. **Singleton Pattern**  
+### [2. **Singleton Pattern**](patterns/02-singleton-pattern/README.md)  
 - Only one instance exists in the whole app  
 - Useful for databases, global state  
 

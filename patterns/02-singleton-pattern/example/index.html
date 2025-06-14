@@ -4,12 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Pattern</title>
-    <script src="" defer></script>
+    <title>Singleton Pattern</title>
 </head>
 
 <body>
-
+    <h1>Singleton Pattern Example</h1>
+    <h2>User: Guest!</h2>
+    <button>Login</button>
+    <button id="logout">Logout</button>
+    <script src="./vanila/example.js"></script>
+    <script>
+        const login = document.querySelector('button');
+        const logout = document.querySelector('#logout');
+        const user = document.querySelector('h2');
+        login.addEventListener('click', () => {
+            user.textContent = `User: ${auth1.login()}!`;
+            login.disabled = true;
+            logout.disabled = false;
+        });
+        logout.addEventListener('click', () => {
+            auth1.logout();
+            user.textContent = 'User: Guest!';
+            login.disabled = false;
+            logout.disabled = true;
+        });
+    </script>
 </body>
 
 </html>
