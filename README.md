@@ -15,7 +15,7 @@
 - Only one instance exists in the whole app  
 - Useful for databases, global state  
 
-### 3. **Factory Pattern**  
+### [3. **Factory Pattern** ](patterns/03-factory-pattern/README.md) 
 - Creates objects without using `new` keyword  
 - Two types: Simple Factory, Abstract Factory  
 

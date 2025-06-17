@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '../globalComponents/Button';
 import SingletonPattern from '../patterns/02-singleton-pattern/example/React';
+import RoleBasefactorypattern from '../patterns/03-factory-pattern/example/React/RoleBasefactorypattern';
 
 
 
@@ -8,7 +9,7 @@ import SingletonPattern from '../patterns/02-singleton-pattern/example/React';
 // Define your patterns data
 const patterns = [
   { id: 'singleton', name: 'Singleton', component: SingletonPattern },
-  { id: 'factory', name: 'Factory', component: () => <div>Factory Pattern Content</div> },
+  { id: 'factory', name: 'Factory', component: RoleBasefactorypattern },
   // Add more patterns here...
 ];
 
